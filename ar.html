@@ -8,6 +8,9 @@
       <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-assets>
       <a-asset-item id="ear" src="085/085_ear.gltf"></a-asset-item>
+      <a-asset-item id="eyebrow" src="085/085_eyebrow.gltf"></a-asset-item>
+      <a-asset-item id="whisker" src="085/085_whisker.gltf"></a-asset-item>
+      <a-asset-item id="star" src="085/085_star.gltf"></a-asset-item>
       <a-asset-item id="headModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.0/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
         </a-assets>
   
@@ -16,7 +19,16 @@
           <a-gltf-model mindar-face-occluder position="0 -0.3 0.15"rotation="0 0 0" scale="0.065 0.065 0.065" src="#headModel"></a-gltf-model>
         </a-entity>
         <a-entity mindar-face-target="anchorIndex: 127">
-          <a-gltf-model rotation="0 0 0" position="0.45 0.5 0.4" scale="4 4 1" src="#ear"></a-gltf-model>
+          <a-gltf-model rotation="0 0 0" position="0.45 0.5 0.2" scale="4 4 1" src="#ear"></a-gltf-model>
+        </a-entity>
+        <a-entity mindar-face-target="anchorIndex: 168">
+            <a-gltf-model rotation="0 0 0" position="-0.02 0.1 0.2" scale="4 4 1" src="#eyebrow"></a-gltf-model>
+        </a-entity>
+        <a-entity mindar-face-target="anchorIndex: 2">
+            <a-gltf-model rotation="0 0 0" position="0 0 0.2" scale="4 4 1" src="#whisker"></a-gltf-model>
+        </a-entity>
+        <a-entity mindar-face-target="anchorIndex: 5">
+            <a-gltf-model rotation="0 0 0" position="0.7 0 0.2" scale="4 4 1" src="#star"></a-gltf-model>
         </a-entity>
       </a-scene>
     </body>
