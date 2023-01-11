@@ -47,7 +47,7 @@
           position.x *= -1;
           quaternion.setFromEuler(euler);
           // console.log(position.z);
-          if(this.el.className=="1" && (position.z > -40 || position.z < -80)){
+          if(this.el.className=="1" && (position.z > -20 || position.z < -50)){
             console.log(this.el.className);
             this.updateVisibility(false);
           } else {
@@ -71,13 +71,12 @@
       renderer="colorManagement: true, physicallyCorrectLights"
       vr-mode-ui="enabled: false"
       device-orientation-permission-ui="enabled: false"
+      id="scene"
     >
       <a-assets>
         <a-asset-item id="ear" src="085/085_ear.gltf"></a-asset-item>
         <a-asset-item id="eyebrow" src="085/085_eyebrow.gltf"></a-asset-item>
         <a-asset-item id="whisker" src="085/085_whisker.gltf"></a-asset-item>
-        <a-asset-item id="star" src="085/085_star.gltf"></a-asset-item>
-        <a-asset-item id="hand" src="085/085_hand.gltf"></a-asset-item>
         <a-asset-item id="lizard" src="085/085_lizard.gltf"></a-asset-item>
         <a-asset-item
           id="headModel"
@@ -119,30 +118,28 @@
           src="#whisker"
         ></a-gltf-model>
       </a-entity>
-      <a-entity mindar-face-target2="anchorIndex: 5" class="1">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0.7 0 0.5"
-          scale="4 4 1"
-          src="#star"
-        ></a-gltf-model>
-      </a-entity>
       <a-entity mindar-face-target2="anchorIndex: 40" class="1">
         <a-gltf-model
           rotation="0 0 0"
-          position="-0.5 -0.8 0.5"
-          scale="4 4 1"
-          src="#hand"
-        ></a-gltf-model>
-       </a-entity>
-       <a-entity mindar-face-target2="anchorIndex: 40" class="1">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0.4 -0.8 0.5"
+          position="0.4 -0.8 -0.3"
           scale="4 4 1"
           src="#lizard"
         ></a-gltf-model>
       </a-entity>
+      <a-entity mindar-face-target2="anchorIndex: 5" class="1">
+        <a-gltf-model
+          rotation="0 0 0"
+          position="0 0 0"
+          scale="1 1 1"
+        ></a-gltf-model>
+      </a-entity>
+      
     </a-scene>
+    <img src= "085/085_hand.png" id="hand" class="0">
+    <style>
+      /* #hand{
+        position: relative;
+      } */
+    </style>
   </body>
 </html>
