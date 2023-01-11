@@ -47,9 +47,13 @@
           position.x *= -1;
           quaternion.setFromEuler(euler);
           // console.log(position.z);
+          let front = document.getElementsByClassName("2");
           if(this.el.className=="1" && (position.z > -20 || position.z < -50)){
-            console.log(this.el.className);
-            this.updateVisibility(false);
+            // this.updateVisibility(false);
+            for (let i = 0; i < front.length; i++) {
+              front[i].style.visibility="hidden";
+            }
+            
           } else {
             matrix = new AFRAME.THREE.Matrix4().compose(
               position,
@@ -58,6 +62,9 @@
             );
             root.matrix.set(...matrix.transpose().toArray());
             this.updateVisibility(true);
+            for (let i = 0; i < front.length; i++) {
+              front[i].style.visibility="visible";
+            }
           }
         },
       });
@@ -118,7 +125,7 @@
           src="#whisker"
         ></a-gltf-model>
       </a-entity>
-      <a-entity mindar-face-target2="anchorIndex: 40" class="1">
+      <a-entity mindar-face-target2="anchorIndex: 40" class="0">
         <a-gltf-model
           rotation="0 0 0"
           position="0.4 -0.8 -0.3"
@@ -135,11 +142,19 @@
       </a-entity>
       
     </a-scene>
-    <img src= "085/085_hand.png" id="hand" class="0">
+    <img src= "085/085_hand.png" id="hand" class="2">
+    <img src= "085/085_star.png" id="star" class="2">
     <style>
-      /* #hand{
-        position: relative;
-      } */
+      #hand{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+      #star {
+        position: absolute;
+        bottom: 200px;
+        right: 0;
+      }
     </style>
   </body>
 </html>
