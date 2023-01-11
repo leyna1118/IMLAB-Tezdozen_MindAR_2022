@@ -47,7 +47,8 @@
           position.x *= -1;
           quaternion.setFromEuler(euler);
           console.log(position.z);
-          if (position.z > -45 || position.z < -100) {
+          if(this.el.className=="1" && (position.z > -40 || position.z < -80)){
+            console.log(this.el.className);
             this.updateVisibility(false);
           } else {
             matrix = new AFRAME.THREE.Matrix4().compose(
@@ -63,6 +64,7 @@
     </script>
   </head>
   <body>
+    <button id="click-photo">Click Photo</button>
     <a-scene
       mindar-face
       embedded
@@ -83,7 +85,7 @@
       </a-assets>
 
       <a-camera active="false" position="0 0 0"></a-camera>
-      <a-entity mindar-face-target2="anchorIndex: 168">
+      <a-entity mindar-face-target2="anchorIndex: 168" class="0">
         <a-gltf-model
           mindar-face-occluder
           position="0 -0.3 0.15"
@@ -92,7 +94,7 @@
           src="#headModel"
         ></a-gltf-model>
       </a-entity>
-      <a-entity mindar-face-target2="anchorIndex: 127">
+      <a-entity mindar-face-target2="anchorIndex: 127" class="0">
         <a-gltf-model
           rotation="0 0 0"
           position="-0.45 0.5 0.2"
@@ -100,23 +102,23 @@
           src="#ear"
         ></a-gltf-model>
       </a-entity>
-      <a-entity mindar-face-target2="anchorIndex: 168">
+      <a-entity mindar-face-target2="anchorIndex: 168" class="0">
         <a-gltf-model
           rotation="0 0 0"
-          position="-0.02 0.1 0.2"
+          position="-0.02 0.1 0"
           scale="4 4 1"
           src="#eyebrow"
         ></a-gltf-model>
       </a-entity>
-      <a-entity mindar-face-target2="anchorIndex: 2">
+      <a-entity mindar-face-target2="anchorIndex: 2" class="0">
         <a-gltf-model
           rotation="0 0 0"
-          position="0 0 0.2"
+          position="0 0 0"
           scale="4 4 1"
           src="#whisker"
         ></a-gltf-model>
       </a-entity>
-      <a-entity mindar-face-target2="anchorIndex: 5">
+      <a-entity mindar-face-target2="anchorIndex: 5" class="1">
         <a-gltf-model
           rotation="0 0 0"
           position="0.7 0 0.2"
