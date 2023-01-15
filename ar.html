@@ -1,164 +1,35 @@
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-face-aframe.prod.js"></script>
-    <style>
-      video {
-        -webkit-transform: scaleX(-1);
-        transform: scaleX(-1);
-      }
-    </style>
-    <script>
-      AFRAME.registerComponent("mindar-face-target2", {
-        dependencies: ["mindar-face-system"],
-
-        schema: {
-          anchorIndex: { type: "number" },
-        },
-
-        init: function () {
-          const arSystem = this.el.sceneEl.systems["mindar-face-system"];
-          arSystem.registerAnchor(this, this.data.anchorIndex);
-
-          const root = this.el.object3D;
-          root.visible = false;
-          root.matrixAutoUpdate = false;
-        },
-
-        updateVisibility(visible) {
-          this.el.object3D.visible = visible;
-        },
-
-        updateMatrix(rawMatrix) {
-          const root = this.el.object3D;
-
-          let position = new AFRAME.THREE.Vector3();
-          let quaternion = new AFRAME.THREE.Quaternion();
-          let euler = new AFRAME.THREE.Euler();
-          let scale = new AFRAME.THREE.Vector3();
-          let matrix = new AFRAME.THREE.Matrix4()
-            .fromArray(rawMatrix)
-            .transpose();
-          matrix.decompose(position, quaternion, scale);
-          euler.setFromQuaternion(quaternion);
-          euler.z *= -1;
-          euler.y *= -1;
-          position.x *= -1;
-          quaternion.setFromEuler(euler);
-          // console.log(position.z);
-          let front = document.getElementsByClassName("2");
-          if(this.el.className=="1" && (position.z > -20 || position.z < -50)){
-            // this.updateVisibility(false);
-            for (let i = 0; i < front.length; i++) {
-              front[i].style.visibility="hidden";
-            }
-            
-          } else {
-            matrix = new AFRAME.THREE.Matrix4().compose(
-              position,
-              quaternion,
-              scale
-            );
-            root.matrix.set(...matrix.transpose().toArray());
-            this.updateVisibility(true);
-            for (let i = 0; i < front.length; i++) {
-              front[i].style.visibility="visible";
-            }
-          }
-        },
-      });
-    </script>
-  </head>
-  <body>
-    <a-scene
-      mindar-face
-      embedded
-      color-space="sRGB"
-      renderer="colorManagement: true, physicallyCorrectLights"
-      vr-mode-ui="enabled: false"
-      device-orientation-permission-ui="enabled: false"
-      id="scene"
-    >
-      <a-assets>
-        <a-asset-item id="ear" src="085/085_ear.gltf"></a-asset-item>
-        <a-asset-item id="eyebrow" src="085/085_eyebrow.gltf"></a-asset-item>
-        <a-asset-item id="whisker" src="085/085_whisker.gltf"></a-asset-item>
-        <a-asset-item id="lizard" src="085/085_lizard.gltf"></a-asset-item>
-        <a-asset-item
-          id="headModel"
-          src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.0/examples/face-tracking/assets/sparkar/headOccluder.glb"
-        ></a-asset-item>
-      </a-assets>
-
-      <a-camera active="false" position="0 0 0"></a-camera>
-      <a-entity mindar-face-target2="anchorIndex: 168" class="0">
-        <a-gltf-model
-          mindar-face-occluder
-          position="0 -0.3 0.15"
-          rotation="0 0 0"
-          scale="0.065 0.065 0.065"
-          src="#headModel"
-        ></a-gltf-model>
-      </a-entity>
-      <a-entity mindar-face-target2="anchorIndex: 127" class="0">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="-0.45 0.5 0.2"
-          scale="4 4 1"
-          src="#ear"
-        ></a-gltf-model>
-      </a-entity>
-      <a-entity mindar-face-target2="anchorIndex: 168" class="0">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="-0.02 0.1 0"
-          scale="4 4 1"
-          src="#eyebrow"
-        ></a-gltf-model>
-      </a-entity>
-      <a-entity mindar-face-target2="anchorIndex: 2" class="0">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0 0 0"
-          scale="4 4 1"
-          src="#whisker"
-        ></a-gltf-model>
-      </a-entity>
-      <a-entity mindar-face-target2="anchorIndex: 40" class="0">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0.4 -0.8 -0.3"
-          scale="4 4 1"
-          src="#lizard"
-        ></a-gltf-model>
-      </a-entity>
-      <a-entity mindar-face-target2="anchorIndex: 5" class="1">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0 0 0"
-          scale="1 1 1"
-        ></a-gltf-model>
-      </a-entity>
-      
-    </a-scene>
-    <img src= "085/085_hand.png" id="hand" class="2">
-    <img src= "085/085_star.png" id="star" class="2">
-    <style>
-      #hand{
-        position: absolute;
-        bottom: 0;
-        left: 5%;
-        width: 40%;
-        height: auto;
-      }
-      #star {
-        position: absolute;
-        bottom: 40%;
-        right: 10%;
-        width: 20%;
-        height: auto;
-      }
-    </style>
-  </body>
-</html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-face-aframe.prod.js"></script>
+    </head>
+    <body>
+      <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+        <a-assets>
+      <a-asset-item id="ear" src="085/085_ear.gltf"></a-asset-item>
+      <a-asset-item id="eyebrow" src="085/085_eyebrow.gltf"></a-asset-item>
+      <a-asset-item id="whisker" src="085/085_whisker.gltf"></a-asset-item>
+      <a-asset-item id="star" src="085/085_star.gltf"></a-asset-item>
+      <a-asset-item id="headModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.0/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
+        </a-assets>
+  
+        <a-camera active="false" position="0 0 0"></a-camera>
+        <a-entity mindar-face-target="anchorIndex: 168">
+          <a-gltf-model mindar-face-occluder position="0 -0.3 0.15"rotation="0 0 0" scale="0.065 0.065 0.065" src="#headModel"></a-gltf-model>
+        </a-entity>
+        <a-entity mindar-face-target="anchorIndex: 127">
+          <a-gltf-model rotation="0 0 0" position="0.45 0.5 0.2" scale="4 4 1" src="#ear"></a-gltf-model>
+        </a-entity>
+        <a-entity mindar-face-target="anchorIndex: 168">
+            <a-gltf-model rotation="0 0 0" position="-0.02 0.1 0.2" scale="4 4 1" src="#eyebrow"></a-gltf-model>
+        </a-entity>
+        <a-entity mindar-face-target="anchorIndex: 2">
+            <a-gltf-model rotation="0 0 0" position="0 0 0.2" scale="4 4 1" src="#whisker"></a-gltf-model>
+        </a-entity>
+        <a-entity mindar-face-target="anchorIndex: 5">
+            <a-gltf-model rotation="0 0 0" position="0.7 0 0.2" scale="4 4 1" src="#star"></a-gltf-model>
+        </a-entity>
+      </a-scene>
+    </body>
+  </html>
